@@ -13,7 +13,7 @@ function tokens(n){
     return web3.utils.toWei(n, 'ether')
 }
 
-contract('TokenFarm', (accounts) => {
+contract('TokenFarm', ([owner, investor]) => {
     let daiToken, dappToken, tokenFarm
 
     before(async () => {
@@ -24,12 +24,29 @@ contract('TokenFarm', (accounts) => {
 
         //Transfer all Dapp tokens to farm
         await dappToken.transfer(tokenFarm.address, tokens('1000000'))
+
+        //Send tokens to investor
+        await daiToken.transfer(investor, tokens('100'), { from: owner })
     })
 
     describe('Mock DAI deployment', async () => {
         it('has a name', async() => {
             const name = await daiToken.name()
             assert.equal(name, "Mock DAI Token")
+        })
+    })
+
+    describe('Dapp Token deployment', async () => {
+        it('has a name', async() => {
+            const name = await dappToken.name()
+            assert.equal(name, "DApp Token")
+        })
+    })
+
+    describe('Token Farm deployment', async () => {
+        it('has a name', async() => {
+            const name = await tokenFarm.name()
+            assert.equal(name, "DApp Token Farm")
         })
     })
 })
