@@ -8,7 +8,9 @@ contract TokenFarm{
     DappToken public dappToken;
     DaiToken public daiToken;
 
+    address[] public stakers;
     mapping(address => uint) public stakingBalance;
+    mapping(address => bool) public hasStaked;
 
     constructor(DappToken _dappToken, DaiToken _daiToken) public{
         dappToken = _dappToken;
@@ -22,5 +24,10 @@ contract TokenFarm{
 
         //update the balance of what is staked
         stakingBalance[msg.sender] = stakingBalance[msg.sender] + _amount;
+
+        //add users address to stakers array if they havent been added already
+        if(!hasStaked[msg.sender]){
+            stakers.push(msg.sender);
+        }
     }
 }
