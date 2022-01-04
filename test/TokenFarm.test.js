@@ -65,6 +65,19 @@ contract('TokenFarm', ([owner, investor]) => {
             //stake Mock DAI Tokens
             await daiToken.approve(tokenFarm.address, tokens('100'), { from: investor })
             await tokenFarm.stakeTokens(tokens('100'), { from: investor })
+
+            //check investor balance after staking
+            result = await daiToken.balanceOf(investor)
+            assert.equal(result.toString(), tokens('0'), 'investor Mock DAI wallet balance correct after staking')
+
+            result = await daiToken.balanceOf(tokenFarm.address)
+            assert.equal(result.toString(), tokens('100'), 'Token Farm Mock DAI balance correct after staking')
+
+            result = await tokenFarm.stakingBalance(investor)
+            assert.equal(result.toString(), tokens('100'), 'investors staking balance correct after staking')
+
+            result = await tokenFarm.isStaking(investor)
+            assert.equal(result.toString(), 'true', 'investor staking status correct after staking')
         })
     })
 })
