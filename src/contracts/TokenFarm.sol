@@ -42,7 +42,7 @@ contract TokenFarm{
     }
 
     //Issuing tokens
-    function issueToken() public {
+    function issueTokens() public {
         //only owner can issue tokens
         require(msg.sender == owner, "caller must be the owner");
 
