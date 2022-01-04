@@ -35,4 +35,15 @@ contract TokenFarm{
         isStaking[msg.sender] = true;
         hasStaked[msg.sender] = true;
     }
+
+    //Issuing tokens
+    function issueToken() public {
+        for(uint i=0; i<stakers.length; i++){
+            address recipient = stakers[i];
+            uint balance = stakingBalance[recipient];
+            if(balance > 0){
+                dappToken.transfer(recipient, balance);
+            }
+        }
+    }
 }
