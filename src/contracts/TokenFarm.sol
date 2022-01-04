@@ -11,6 +11,7 @@ contract TokenFarm{
     address[] public stakers;
     mapping(address => uint) public stakingBalance;
     mapping(address => bool) public hasStaked;
+    mapping(address => bool) public isStaking;
 
     constructor(DappToken _dappToken, DaiToken _daiToken) public{
         dappToken = _dappToken;
@@ -29,5 +30,9 @@ contract TokenFarm{
         if(!hasStaked[msg.sender]){
             stakers.push(msg.sender);
         }
+
+        //Staking status
+        isStaking[msg.sender] = true;
+        hasStaked[msg.sender] = true;
     }
 }
