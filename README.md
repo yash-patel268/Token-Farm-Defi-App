@@ -22,3 +22,6 @@ For this application it must have the following components
 5. Add Ganache network using Network Name: `Ganache`, New RPC URL: `http://127.0.0.1:7545`, and Chain ID: `1337`.
 6. Run `npm run start` to open the webpage where you're able to stake mock DAI for DAPP.
 
+## Testing program
+Since smart contracts are final we are unable to revert changes so there have been test made to ensure functionality. They are located within test folder, within the file `TokenFarm.test.js`.
+- Run `truffle test` to see the results
