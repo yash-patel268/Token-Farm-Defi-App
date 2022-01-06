@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import './App.css'
 import Web3 from 'web3'
 import DaiToken from '../abis/DaiToken.json'
+import DappToken from '../abis/DappToken.json'
 
 class App extends Component {
   async componentWillMount(){
@@ -28,6 +29,17 @@ class App extends Component {
       this.setState({ daiTokenBalance: daiTokenBalance.toString() })
     } else{
       window.alert('DaiToken contract not deployed to detected network.')
+    }
+
+    //Load DappToken
+    const dappTokenData = DappToken.networks[networkId]
+    if(dappTokenData){
+      const dappToken = new web3.eth.Contract(DappToken.abi, dappTokenData.address)
+      this.setState({ dappToken })
+      let dappTokenBalance = await dappToken.methods.balanceOf(this.state.account).call()
+      this.setState({ dappTokenBalance: dappTokenBalance.toString() })
+    } else{
+      window.alert('DappToken contract not deployed to detected network.')
     }
   }
 
