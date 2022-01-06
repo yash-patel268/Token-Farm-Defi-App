@@ -98,7 +98,7 @@ class App extends Component {
                 >
                 </a>
 
-                <h1>Hello, World!</h1>
+                
 
               </div>
             </main>
