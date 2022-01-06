@@ -11,4 +11,14 @@ For this application it must have the following components
 - [Ganache](https://trufflesuite.com/ganache/)
 - [MetaMask](https://metamask.io/)
 - Coding Environment (preferably Vscode)
+- Install Truffle with `npm install -g truffle` 
+
+## How to use the program
+1. Download this repo and extract the contents.
+2. Open Ganache and click quickstart ethereum.
+2. Run `truffle compile` in coding enviroment.
+3. Run `trufgle migrate --reset` in coding enviroment
+4. Import 2nd Ganache account into metamask using private key.
+5. Add Ganache network using Network Name: `Ganache`, New RPC URL: `http://127.0.0.1:7545`, and Chain ID: `1337`.
+6. Run `npm run start` to open the webpage where you're able to stake mock DAI for DAPP.
 
